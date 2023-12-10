@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        tool name: 'sonar-scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+        maven 'sonar-scanner'
     }
     stages {
         stage ('git checkout') {
