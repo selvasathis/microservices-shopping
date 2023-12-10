@@ -14,7 +14,7 @@ pipeline {
         stage ('sonar scan') {
             steps {
                 withSonarQubeENV(sonar-scanner) {
-                    sh """$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=10-tier -Dsonar.projectName=10-tier -Dsonar.java.bineries= . """
+                    sh """$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=10-Tier -Dsonar.projectName=10-Tier -Dsonar.java.bineries= . """
 
                 }
             }
