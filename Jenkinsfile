@@ -13,9 +13,12 @@ pipeline {
         }
         stage ('sonar scan') {
             steps {
-                withSonarQubeENV('sonar-scanner') {
-                    sh """ $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=microservice -Dsonar.projectName=microservice -Dsonar.java.bineries= . """
+                script {
+                    def scannerHome = tool 'sonar-scanner'
+                    withSonarQubeEnv ('sonar-scanner') {
+                        sh '${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=microservice'
 
+                }
                 }
             }
         }
