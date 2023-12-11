@@ -25,19 +25,20 @@ pipeline {
         stage ('docker-build') {
             steps {
                 parallel (
-                    'nexus_login' {
+                    nexus_login: {
                         script {
                             withCredentials(credentialsId:"nexus-login") {
                                 sh 'docker login http://13.233.101.119:8081/repository/my-repo/'
                             }
                         }
                     }
-                    'frontend': {
+                    frontend: {
                         dir ('src/frontend/') {
-                            sh 'docker build -t 13.233.101.119:8081/frontend:latest'
-                            sh 'docker push 13.233.101.119:8081/frontend:latest'
-                            sh 'docker rmi -f 13.233.101.119:8081/frontend:latest'
-
+                            script {
+                                sh 'docker build -t 13.233.101.119:8081/frontend:latest'
+                                sh 'docker push 13.233.101.119:8081/frontend:latest'
+                                sh 'docker rmi -f 13.233.101.119:8081/frontend:latest'
+                            }
                         }
                     }
                 )
