@@ -31,7 +31,7 @@ pipeline {
                                 sh 'docker login http://13.233.101.119:8081/repository/my-repo/'
                             }
                         }
-                    }
+                    },
                     frontend: {
                         dir ('src/frontend/') {
                             script {
