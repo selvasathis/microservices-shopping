@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    tools {
-        tool 'sonar-scanner'
-    }
     stages {
         stage ('git checkout') {
             steps {
