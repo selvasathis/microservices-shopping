@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        SCANNER_HOME = tool 'sonar-scanner'
+    }
     stages {
         stage ('git checkout') {
             steps {
@@ -11,7 +14,11 @@ pipeline {
         stage ('sonar-scanner') {
             steps {
                 withSonarQubeEnv('sonar') {
-                    sh 'mvn clean package sonar:sonar'
+                    sh '''$SCANNER_HOME/bin/sonar-scanner \
+                    -Dsonar.projectKey=shopping \
+                    -Dsonar.projectName=shopping \
+                    -Dsonar.sources=src/ \
+                    -Dsonar.java.binaries=. '''
                 }
             }
         }
