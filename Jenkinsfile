@@ -13,7 +13,7 @@ pipeline {
                 script {
                     def scannerHome = tool 'sonar-scanner'
                     withSonarQubeEnv ('sonar') {
-                        sh '${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=microservice'
+                        sh '${scannerHome}/bin -Dsonar.projectKey=microservice'
 
                 }
                 }
