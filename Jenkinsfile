@@ -8,5 +8,12 @@ pipeline {
                 }
             }
         }
+        stage ('sonar-scanner') {
+            steps {
+                withSonarQubeEnv('sonar') {
+                    sh 'mvn clean package sonar:sonar'
+                }
+            }
+        }
     }
 }
